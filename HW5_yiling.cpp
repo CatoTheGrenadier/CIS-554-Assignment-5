@@ -65,7 +65,6 @@ triangle::triangle(int n, int m) { //constructor
 			}else {
 				next_in_line.lock()->Lchild = next_tail.lock();
 				next_in_line.lock()->Rchild = make_shared<node>(rand() % m);
-				next_tail.lock()->next = next_in_line.lock()->Lchild;
 				next_in_line.lock()->Lchild->next = next_in_line.lock()->Rchild;
 				next_tail = next_in_line.lock()->Rchild;
 			}
@@ -104,7 +103,6 @@ triangle::triangle(const triangle& t) :triangle{ 1,10 } { //copy constructor
 				next_in_line_2.lock()->Lchild = next_tail.lock();
 				next_in_line_2.lock()->Rchild = make_shared<node>(next_in_line_1.lock()->value);
 				next_in_line_1 = next_in_line_1.lock()->next;
-				next_tail.lock()->next = next_in_line_2.lock()->Lchild;
 				next_in_line_2.lock()->Lchild->next = next_in_line_2.lock()->Rchild;
 				next_tail = next_in_line_2.lock()->Rchild;
 			}
@@ -147,7 +145,6 @@ void triangle::operator=(const triangle& t) {  //copy assignment
 				next_in_line_2.lock()->Lchild = next_tail.lock();
 				next_in_line_2.lock()->Rchild = make_shared<node>(next_in_line_1.lock()->value);
 				next_in_line_1 = next_in_line_1.lock()->next;
-				next_tail.lock()->next = next_in_line_2.lock()->Lchild;
 				next_in_line_2.lock()->Lchild->next = next_in_line_2.lock()->Rchild;
 				next_tail = next_in_line_2.lock()->Rchild;
 			}
